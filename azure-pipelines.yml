@@ -13,14 +13,6 @@ variables:
 
 steps:
 
-  - task: SonarCloudPrepare@1
-    inputs:
-      SonarCloud: 'LearnSonar'
-      organization: 'vivekdstrial'
-      scannerMode: 'MSBuild'
-      projectKey: 'vivekds'
-      projectName: 'vivekds'
-
   - task: DotNetCoreInstaller@0
     displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
     inputs:
@@ -61,10 +53,7 @@ steps:
       arguments: '--no-build --configuration $(buildConfiguration)'
       publishTestResults: true
       projects: '**/*.Tests.csproj'
-  - task: SonarCloudAnalyze@1
-  - task: SonarCloudPublish@1
-    inputs:
-      pollingTimeoutSec: '300'
+
   - task: DotNetCoreCLI@2
     displayName: 'Publish the project - $(buildConfiguration)'
     inputs:
