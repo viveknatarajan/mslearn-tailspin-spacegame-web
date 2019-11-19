@@ -12,6 +12,15 @@ variables:
   dotnetSdkVersion: '2.1.505'
 
 steps:
+
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'LearnSonar'
+      organization: 'vivekdstrial'
+      scannerMode: 'MSBuild'
+      projectKey: 'vivekds'
+      projectName: 'vivekds'
+
   - task: DotNetCoreInstaller@0
     displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
     inputs:
